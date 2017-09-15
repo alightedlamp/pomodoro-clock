@@ -8,7 +8,7 @@ class TopBar extends React.Component {
     const buttonStyle = {
       border: 'none',
       width: '25%',
-      backgroundColor: 'red',
+      backgroundColor: 'tomato',
       color: 'white',
       padding: '.75em'
     }
