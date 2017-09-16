@@ -10,10 +10,10 @@ class App extends Component {
     super();
 
     this.state = {
-      length: 20,
+      length: '20:00',
       totalSegments: 1,
-      currentProgress: {
-        time: 0,
+      currentTimer: {
+        timeRemaining: 0,
         segment: 1
       },
       timerOn: false
@@ -23,12 +23,15 @@ class App extends Component {
   }
 
   startTimer() {
+    let timeRemaining = this.state.currentTimer;
+    let segment = this.state.segment;
+
     if (this.state.timerOn === false) {
-      let currentProgress = this.state.currentProgress.time = this.state.length;
+      let currentTimer = { timeRemaining, segment };
       let timerOn = true;
 
       this.setState({
-        currentProgress,
+        currentTimer,
         timerOn
       });
     }

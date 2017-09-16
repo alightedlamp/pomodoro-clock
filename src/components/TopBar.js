@@ -15,7 +15,6 @@ class TopBar extends React.Component {
     return(
       <div>
         <Button text="Settings" style={buttonStyle}/>
-        <Title />
       </div>
       )
   }
