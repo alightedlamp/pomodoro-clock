@@ -18,12 +18,27 @@ class App extends Component {
       },
       timerOn: false
     }
+
+    this.startTimer = this.startTimer.bind(this);
   }
+
+  startTimer() {
+    if (this.state.timerOn === false) {
+      let currentProgress = this.state.currentProgress.time = this.state.length;
+      let timerOn = true;
+
+      this.setState({
+        currentProgress,
+        timerOn
+      });
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <TopBar />
-        <Pomodoro {...this.state} />
+        <Pomodoro {...this.state} startTimer={this.startTimer} />
         <Progress segments={this.state.totalSegments} />
       </div>
     );

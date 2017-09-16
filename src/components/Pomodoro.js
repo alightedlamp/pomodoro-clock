@@ -11,19 +11,11 @@ class Pomodoro extends React.Component {
     this.currentProgress = this.props.currentProgress;
     this.length = this.props.length;
     this.timerOn = this.props.timerOn;
-
-    this.startTimer = this.startTimer.bind(this);
-  }
-
-  startTimer() {
-    this.setState({
-      currentProgress.time: length,
-      timerOn: true
-    });
+    this.startTimer = this.props.startTimer;
   }
 
   render() {
-    const buttonText = timerOn ? 'Pause' : 'Start';
+    const buttonText = this.timerOn ? 'Pause' : 'Start';
     const buttonStyle = {
       backgroundColor: 'white',
       width: '100%',
@@ -41,7 +33,7 @@ class Pomodoro extends React.Component {
       <div>
         <Clock currentProgress={this.currentProgress} length={this.length} timerOn={this.timerOn}/>
         <Ticker currentProgress={this.currentProgress} length={this.length}  timerOn={this.timerOn}/>
-        <Button text={buttonText} style={buttonStyle} action={this.startTimer}/>
+        <Button text={buttonText} style={buttonStyle} action={this.startTimer} />
       </div>
       )
   }

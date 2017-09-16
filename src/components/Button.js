@@ -1,7 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
 
-@Radium
 class Button extends React.Component {
   render() {
     const text = this.props.text;
@@ -9,9 +8,9 @@ class Button extends React.Component {
     const action = this.props.action;
 
     return(
-      <button className="button" style={style} onClick={() => action}>{text}</button>
+      <button className="button" style={style} onClick={() => action()}>{text}</button>
       )
   }
 }
 
-export default Button;
+export default Radium(Button);
