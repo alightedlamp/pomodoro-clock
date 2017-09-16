@@ -5,16 +5,13 @@ import Ticker from './Ticker';
 import Button from './Button';
 
 class Pomodoro extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.currentTimer = this.props.currentTimer;
-    this.length = this.props.length;
-    this.timerOn = this.props.timerOn;
-    this.startTimer = this.props.startTimer;
-  }
-
   render() {
+    const currentTimer = this.props.currentTimer;
+    const length = this.props.length;
+    const timerOn = this.props.timerOn;
+    const startTimer = this.props.startTimer;
+    const decrement = this.props.decrement;
+
     const buttonText = this.timerOn ? 'Pause' : 'Start';
     const buttonStyle = {
       backgroundColor: 'tomato',
@@ -35,9 +32,9 @@ class Pomodoro extends React.Component {
 
     return(
       <div>
-        <Clock currentTimer={this.currentTimer} length={this.length} timerOn={this.timerOn}/>
-        <Ticker currentTimer={this.currentTimer} length={this.length}  timerOn={this.timerOn}/>
-        <Button text={buttonText} style={buttonStyle} action={this.startTimer} />
+        <Clock currentTimer={currentTimer} length={length} timerOn={timerOn} decrement={decrement} />
+        <Ticker currentTimer={currentTimer} length={length} timerOn={timerOn} />
+        <Button text={buttonText} style={buttonStyle} action={startTimer} />
       </div>
       )
   }
