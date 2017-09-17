@@ -12,61 +12,63 @@ class App extends Component {
     this.state = {
       length: '20:00',
       totalSegments: 1,
-      currentTimer: {
-        timeRemaining: 0,
-        segment: 1
-      },
+      timeRemaining: '00:00',
+      segmentsRemaining: 1,
       timerOn: false
     }
 
-    this.startTimer = this.startTimer.bind(this);
+    this.addTime = this.addTime.bind(this);
+    this.substractTime = this.subtractTime.bind(this);
+    this.toggleTimer = this.toggleTimer.bind(this);
     this.decrement = this.decrement.bind(this);
   }
 
-  startTimer() {
-    let timeRemaining = this.state.length;
-    let segment = this.state.currentTimer.segment;
+  addTime() {
+    let m = parseInt(this.state.length.split(':')[0]) + 1;
+    let length = `${m}:00`;
+    this.setState({ length });
+  }
 
-    if (this.state.timerOn === false) {
-      let currentTimer = { timeRemaining, segment };
-      let timerOn = true;
+  subtractTime() {
+    let m = parseInt(this.state.length.split(':')[0]) - 1;
+    let length = `${m}:00`;
+    this.setState({ length });
+  }
 
-      // Turns timer on
-      this.setState({
-        currentTimer,
-        timerOn
-      });
+  toggleTimer() {
+    if (!this.state.timerOn) {
+      let timerOn = !timerOn;
+      if (timerOn) {
+        const timeRemaining = this.state.length;
+        this.setState({ timeRemaining });
+      }
+      this.setState({ timerOn });
     }
   }
 
   decrement() {
     const ticker = setInterval(() => {
-      let segment = this.state.currentTimer.segment;
-
-      let min = parseInt(this.state.currentTimer.timeRemaining.split(':')[0]);
-      let sec = parseInt(this.state.currentTimer.timeRemaining.split(':')[1]);
-
-      if (sec > 0) {
-        sec--;
-      }
-      else if (sec === 0) {
-        min--;
-        sec = 59;
-      }
-
-      if (min === 0 && sec === 0) {
+      let segment = this.state.segmentsRemaining;
+      if (timeRemaining === '00:00') {
         clearInterval(ticker);
       }
 
-      let newSegment = 0;
-      let timeRemaining = `${min}:${sec}`;
-      let currentTimer = {
-        timeRemaining,
-        segment: newSegment
+      let m = parseInt(this.state.timeRemaining.split(':')[0]);
+      let s = parseInt(this.state.timeRemaining.split(':')[1]);
+
+      if (s > 0) {
+        s--;
+        if (s < 10) {
+          s = `0${s}`;
+        }
       }
-      this.setState({
-        currentTimer
-      });
+      else if (s === 0) {
+        m--;
+        s = 59;
+      }
+
+      let timeRemaining = `${m}:${s}`;
+      this.setState({ timeRemaining });
     }, 1000)
   }
 
@@ -74,7 +76,13 @@ class App extends Component {
     return (
       <div className="App">
         <TopBar />
-        <Pomodoro {...this.state} startTimer={this.startTimer} decrement={this.decrement} />
+        <Pomodoro
+          {...this.state}
+          toggleTimer={this.toggleTimer}
+          decrement={this.decrement}
+          addTime={this.addTime}
+          subtractTime={this.subtractTime}
+        />
         <Progress segments={this.state.totalSegments} />
       </div>
     );

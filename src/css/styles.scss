@@ -12,14 +12,33 @@ body {
   background-color: white;
   width: 400px;
   box-shadow: 7px 7px 0 red;
+  border: 4px double #eee;
 }
 
 h1 {
   font-weight: 100;
+  font-size: 2em;
+  color: tomato;
+  text-align: center;
+  margin: 1em 0 0 0;
+  text-shadow: 3px 3px #eee;
 }
 
 .clock {
+  display: flex;
   font-size: 4em;
   text-align: center;
   margin: 1em 0;
+  text-shadow: 3px 3px #eee;
+  justify-content: space-between;
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+.controls button:nth-child(1) {
+  margin-right: .25em;
+}
+.controls button:nth-child(2) {
+  margin-left: .25em;
 }

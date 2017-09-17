@@ -6,16 +6,21 @@ import Button from './Button';
 
 class Pomodoro extends React.Component {
   render() {
-    const currentTimer = this.props.currentTimer;
+    const timeRemaining = this.props.timeRemaining;
     const length = this.props.length;
     const timerOn = this.props.timerOn;
-    const startTimer = this.props.startTimer;
+    const toggleTimer = this.props.toggleTimer;
     const decrement = this.props.decrement;
+    const addTime = this.props.addTime;
+    const subtractTime = this.props.subtractTime;
 
-    const buttonText = this.timerOn ? 'Pause' : 'Start';
+    const lessTimeButtonText = '-';
+    const moreTimeButtonText = '+';
+    const pauseButtonText = timerOn ? 'Pause' : 'Start';
+
     const buttonStyle = {
       backgroundColor: 'tomato',
-      width: '100%',
+      width: '50%',
       padding: '20px',
       fontSize: '1.25em',
       border: '1px solid tomato',
@@ -23,18 +28,81 @@ class Pomodoro extends React.Component {
 
       ':hover': {
         backgroundColor: 'white',
-        'transition': '.2s',
         border: '1px solid tomato',
+        boxShadow: '3px 3px 0 red',
+        textShadow: '2px 2px #eee',
         color: 'red',
-        boxShadow: '3px 3px 0 red'
+        'transition': '.2s'
       }
+    }
+    const lessTimeButtonStyle = {
+      backgroundColor: '#eee',
+      border: '1px solid #eee',
+      width: '50px',
+
+      ':hover': {
+        backgroundColor: 'white',
+        boxShadow: '3px 3px 0 black',
+        textShadow: '2px 2px #eee',
+        border: '1px solid black',
+        transition: '.2s'
+      }
+    }
+    const moreTimeButtonStyle = {
+      backgroundColor: '#eee',
+      border: '1px solid #eee',
+      width: '50px',
+
+      ':hover': {
+        backgroundColor: 'white',
+        boxShadow: '2px 2px 0 black',
+        textShadow: '3px 3px #eee',
+        border: '1px solid black',
+        transition: '.2s'
+      }
+    }
+
+    if (timerOn) {
+      lessTimeButtonStyle.disabled = 'disabled';
+      moreTimeButtonStyle.disabled = 'disabled';
     }
 
     return(
       <div>
-        <Clock currentTimer={currentTimer} length={length} timerOn={timerOn} decrement={decrement} />
-        <Ticker currentTimer={currentTimer} length={length} timerOn={timerOn} />
-        <Button text={buttonText} style={buttonStyle} action={startTimer} />
+        <div className="clock">
+          <Button
+            text={lessTimeButtonText}
+            style={lessTimeButtonStyle}
+            action={subtractTime}
+          />
+          <Clock
+            timeRemaining={timeRemaining}
+            length={length}
+            timerOn={timerOn}
+            decrement={decrement}
+          />
+          <Button
+            text={moreTimeButtonText}
+            style={moreTimeButtonStyle}
+            action={addTime}
+          />
+        </div>
+        <Ticker
+          timeRemaining={timeRemaining}
+          length={length}
+          timerOn={timerOn}
+        />
+        <div className="controls">
+          <Button
+            text={pauseButtonText}
+            style={buttonStyle}
+            action={toggleTimer}
+          />
+          <Button
+            text="Reset"
+            style={buttonStyle}
+          />
+        </div>
       </div>
       )
   }
