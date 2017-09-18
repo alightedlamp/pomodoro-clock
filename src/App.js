@@ -3,25 +3,24 @@ import './css/styles.css';
 
 import TopBar from './components/TopBar';
 import Pomodoro from './components/Pomodoro';
-import Progress from './components/Progress';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      length: '20:00',
+      length: '25:00',
       totalSegments: 1,
       timeRemaining: '00:00',
-      segmentsRemaining: 0,
+      segmentsRemaining: 1,
       timerOn: false,
       ticker: false
     }
 
-    this.toggleTimer = this.toggleTimer.bind(this);
     this.addTime = this.addTime.bind(this);
-    this.substractTime = this.subtractTime.bind(this);
+    this.subtractTime = this.subtractTime.bind(this);
     this.reset = this.reset.bind(this);
+    this.toggleTimer = this.toggleTimer.bind(this);
   }
 
   addTime() {
@@ -107,7 +106,6 @@ class App extends Component {
           subtractTime={this.subtractTime}
           reset={this.reset}
         />
-        <Progress segments={this.state.totalSegments} />
       </div>
     );
   }

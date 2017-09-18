@@ -3,11 +3,14 @@ import React from 'react';
 import Clock from './Clock';
 import Ticker from './Ticker';
 import Button from './Button';
+import Progress from './Progress';
 
 class Pomodoro extends React.Component {
   render() {
-    const timeRemaining = this.props.timeRemaining;
     const length = this.props.length;
+    const timeRemaining = this.props.timeRemaining;
+    const totalSegments = this.props.totalSegments;
+    const segmentsRemaining = this.props.segmentsRemaining;
     const timerOn = this.props.timerOn;
     const toggleTimer = this.props.toggleTimer;
     const addTime = this.props.addTime;
@@ -92,6 +95,12 @@ class Pomodoro extends React.Component {
           length={length}
           timerOn={timerOn}
         />
+        {/*<Progress
+          length={length}
+          timeRemaining={timeRemaining}
+          segmentsRemaining={segmentsRemaining}
+          totalSegments={totalSegments}
+        />*/}
         <div className="controls">
           <Button
             text={pauseButtonText}
