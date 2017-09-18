@@ -1,11 +1,11 @@
 import React from 'react';
 
 class Clock extends React.Component {
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.timerOn === true && this.props.length === this.props.timeRemaining) {
-      this.props.decrement();
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.props.timerOn === true && this.props.length === this.props.timeRemaining) {
+  //     this.props.decrement();
+  //   }
+  // }
 
   render() {
     let time;

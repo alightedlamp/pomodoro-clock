@@ -10,9 +10,9 @@ class Pomodoro extends React.Component {
     const length = this.props.length;
     const timerOn = this.props.timerOn;
     const toggleTimer = this.props.toggleTimer;
-    const decrement = this.props.decrement;
     const addTime = this.props.addTime;
     const subtractTime = this.props.subtractTime;
+    const reset = this.props.reset;
 
     const lessTimeButtonText = '-';
     const moreTimeButtonText = '+';
@@ -62,6 +62,7 @@ class Pomodoro extends React.Component {
       }
     }
 
+    // This should be in state, I think
     if (timerOn) {
       lessTimeButtonStyle.disabled = 'disabled';
       moreTimeButtonStyle.disabled = 'disabled';
@@ -79,7 +80,6 @@ class Pomodoro extends React.Component {
             timeRemaining={timeRemaining}
             length={length}
             timerOn={timerOn}
-            decrement={decrement}
           />
           <Button
             text={moreTimeButtonText}
@@ -101,6 +101,7 @@ class Pomodoro extends React.Component {
           <Button
             text="Reset"
             style={buttonStyle}
+            action={reset}
           />
         </div>
       </div>
