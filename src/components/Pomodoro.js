@@ -3,14 +3,14 @@ import React from 'react';
 import Clock from './Clock';
 import Ticker from './Ticker';
 import Button from './Button';
-import Progress from './Progress';
+// import Progress from './Progress';
 
 class Pomodoro extends React.Component {
   render() {
     const length = this.props.length;
     const timeRemaining = this.props.timeRemaining;
-    const totalSegments = this.props.totalSegments;
-    const segmentsRemaining = this.props.segmentsRemaining;
+    // const totalSegments = this.props.totalSegments;
+    // const segmentsRemaining = this.props.segmentsRemaining;
     const timerOn = this.props.timerOn;
     const toggleTimer = this.props.toggleTimer;
     const addTime = this.props.addTime;
@@ -27,6 +27,7 @@ class Pomodoro extends React.Component {
       padding: '20px',
       fontSize: '1.25em',
       border: '1px solid tomato',
+      boxShadow: '1px 1px 0 red',
       color: 'white',
 
       ':hover': {
@@ -41,6 +42,7 @@ class Pomodoro extends React.Component {
     const lessTimeButtonStyle = {
       backgroundColor: '#eee',
       border: '1px solid #eee',
+      boxShadow: '1px 1px 0 black',
       width: '50px',
 
       ':hover': {
@@ -54,6 +56,7 @@ class Pomodoro extends React.Component {
     const moreTimeButtonStyle = {
       backgroundColor: '#eee',
       border: '1px solid #eee',
+      boxShadow: '1px 1px 0 black',
       width: '50px',
 
       ':hover': {
@@ -73,22 +76,27 @@ class Pomodoro extends React.Component {
 
     return(
       <div>
-        <div className="clock">
+        <div className="clock-row">
           <Button
             text={lessTimeButtonText}
             style={lessTimeButtonStyle}
             action={subtractTime}
           />
-          <Clock
-            timeRemaining={timeRemaining}
-            length={length}
-            timerOn={timerOn}
-          />
+          <div className="clock">
+            <Clock
+              timeRemaining={timeRemaining}
+              length={length}
+              timerOn={timerOn}
+            />
+          </div>
           <Button
             text={moreTimeButtonText}
             style={moreTimeButtonStyle}
             action={addTime}
           />
+        </div>
+        <div className="length">
+          Length: {length}
         </div>
         <Ticker
           timeRemaining={timeRemaining}

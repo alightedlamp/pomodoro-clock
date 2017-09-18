@@ -24,13 +24,15 @@ class App extends Component {
   }
 
   addTime() {
-    let m = parseInt(this.state.length.split(':')[0]) + 1;
+    let m = parseInt(this.state.length.split(':')[0], 10) + 1;
+    m = m > 9 ? m : '0' + m;
     let length = `${m}:00`;
     this.setState({ length });
   }
 
   subtractTime() {
-    let m = parseInt(this.state.length.split(':')[0]) - 1;
+    let m = parseInt(this.state.length.split(':')[0], 10) - 1;
+    m = m > 9 ? m : '0' + m;
     let length = `${m}:00`;
     this.setState({ length });
   }
@@ -66,26 +68,25 @@ class App extends Component {
       }
 
       const ticker = setInterval(() => {
-        let segment = this.state.segmentsRemaining;
-        if (timeRemaining === '00:00') {
-          clearInterval(ticker);
-        }
-
-        let m = parseInt(this.state.timeRemaining.split(':')[0]);
-        let s = parseInt(this.state.timeRemaining.split(':')[1]);
+        // let segment = this.state.segmentsRemaining;
+        let m = parseInt(this.state.timeRemaining.split(':')[0], 10);
+        let s = parseInt(this.state.timeRemaining.split(':')[1], 10);
 
         if (s > 0) {
           s--;
-          if (s < 10) {
-            s = `0${s}`;
-          }
         }
         else if (s === 0) {
           m--;
           s = 59;
         }
 
+        s = s > 9 ? s : '0' + s;
+        m = m > 9 ? m : '0' + m;
+
         let timeRemaining = `${m}:${s}`;
+        if (timeRemaining === '00:00') {
+          this.reset();
+        }
         this.setState({ timeRemaining });
       }, 1000);
 
