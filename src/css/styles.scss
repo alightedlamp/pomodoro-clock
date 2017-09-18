@@ -30,8 +30,9 @@ h1 {
   text-align: center;
   width: 200px;
   font-size: .9em;
-  margin: 25px auto 1em auto;
+  margin: 1em auto 1em auto;
   padding-top: 25px;
+  font-weight: bold;
 }
 .clock-row {
   display: flex;
@@ -43,8 +44,8 @@ h1 {
   justify-content: space-between;
 }
 .clock-row button {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 55px;
+  height: 50px;
 }
 .clock {
   padding: 50px 0;
