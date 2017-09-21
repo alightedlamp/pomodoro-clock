@@ -7,10 +7,10 @@ class Clock extends React.Component {
       : this.props.timeRemaining;
 
     return (
-        <div>
-          {time}
-        </div>
-      )
+      <div>
+        {time}
+      </div>
+    )
   }
 }
 

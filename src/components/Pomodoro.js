@@ -111,14 +111,14 @@ class Pomodoro extends React.Component {
         />*/}
         <div className="controls">
           <Button
-            text={pauseButtonText}
-            style={buttonStyle}
-            action={toggleTimer}
-          />
-          <Button
             text="Reset"
             style={buttonStyle}
             action={reset}
+          />
+          <Button
+            text={pauseButtonText}
+            style={buttonStyle}
+            action={toggleTimer}
           />
         </div>
       </div>
